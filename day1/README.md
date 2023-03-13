@@ -121,6 +121,80 @@ Usage: hdfs [OPTIONS] SUBCOMMAND [SUBCOMMAND OPTIONS]
 --debug                
 ```
 
+### update core-site-xml for namenode connection string 
+
+```
+ashu@ip-172-31-1-160:~$ ls
+hadoop-3.2.3  hadoop-3.2.3.tar.gz
+ashu@ip-172-31-1-160:~$ cd hadoop-3.2.3/
+ashu@ip-172-31-1-160:~/hadoop-3.2.3$ ls
+LICENSE.txt  NOTICE.txt  README.txt  bin  etc  include  lib  libexec  sbin  share
+ashu@ip-172-31-1-160:~/hadoop-3.2.3$ cd  etc/
+ashu@ip-172-31-1-160:~/hadoop-3.2.3/etc$ ls
+hadoop
+ashu@ip-172-31-1-160:~/hadoop-3.2.3/etc$ cd hadoop/
+ashu@ip-172-31-1-160:~/hadoop-3.2.3/etc/hadoop$ ls
+capacity-scheduler.xml      hadoop-user-functions.sh.example  kms-log4j.properties        ssl-client.xml.example
+configuration.xsl           hdfs-site.xml                     kms-site.xml                ssl-server.xml.example
+container-executor.cfg      httpfs-env.sh                     log4j.properties            user_ec_policies.xml.template
+core-site.xml               httpfs-log4j.properties           mapred-env.cmd              workers
+hadoop-env.cmd              httpfs-signature.secret           mapred-env.sh               yarn-env.cmd
+hadoop-env.sh               httpfs-site.xml                   mapred-queues.xml.template  yarn-env.sh
+hadoop-metrics2.properties  kms-acls.xml                      mapred-site.xml             yarn-site.xml
+hadoop-policy.xml           kms-env.sh                        shellprofile.d              yarnservice-log4j.properties
+ashu@ip-172-31-1-160:~/hadoop-3.2.3/etc/hadoop$ vim core-site.xml 
+ashu@ip-172-31-1-160:~/hadoop-3.2.3/etc/hadoop$ cat core-site.xml 
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+<property>
+<name>fs.defaultFS</name>
+<value>hdfs://ec2-13-127-64-190.ap-south-1.compute.amazonaws.com:9000</value>
+</property>
+</configuration>
+
+```
+
+### export java_home in hadoop-env.sh
+
+```
+ashu@ip-172-31-1-160:~/hadoop-3.2.3/etc/hadoop$ ls
+capacity-scheduler.xml      hadoop-user-functions.sh.example  kms-log4j.properties        ssl-client.xml.example
+configuration.xsl           hdfs-site.xml                     kms-site.xml                ssl-server.xml.example
+container-executor.cfg      httpfs-env.sh                     log4j.properties            user_ec_policies.xml.template
+core-site.xml               httpfs-log4j.properties           mapred-env.cmd              workers
+hadoop-env.cmd              httpfs-signature.secret           mapred-env.sh               yarn-env.cmd
+hadoop-env.sh               httpfs-site.xml                   mapred-queues.xml.template  yarn-env.sh
+hadoop-metrics2.properties  kms-acls.xml                      mapred-site.xml             yarn-site.xml
+hadoop-policy.xml           kms-env.sh                        shellprofile.d              yarnservice-log4j.properties
+ashu@ip-172-31-1-160:~/hadoop-3.2.3/etc/hadoop$ echo $JAVA_HOME
+/usr/lib/jvm/java-8-openjdk-amd64
+ashu@ip-172-31-1-160:~/hadoop-3.2.3/etc/hadoop$ vim hadoop-env.sh 
+ashu@ip-172-31-1-160:~/hadoop-3.2.3/etc/hadoop$ vim hadoop-env.sh  +54
+ashu@ip-172-31-1-160:~/hadoop-3.2.3/etc/hadoop$ vim hadoop-env.sh  +54
+ashu@ip-172-31-1-160:~/hadoop-3.2.3/etc/hadoop$ vim hadoop-env.sh  +54
+ashu@ip-172-31-1-160:~/hadoop-3.2.3/etc/hadoop$ vim hadoop-env.sh  +54
+ashu@ip-172-31-1-160:~/hadoop-3.2.3/etc/hadoop$ vim hadoop-env.sh  +54
+ashu@ip-172-31-1-160:~/hadoop-3.2.3/etc/hadoop$ 
+```
+
+
 
 
 

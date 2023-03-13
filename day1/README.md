@@ -66,4 +66,62 @@ ashu@ip-172-31-1-160:~$ jps
 
 ```
 
+### Downloading and setting up apache hadoop software 
+
+```
+ wget https://downloads.apache.org/hadoop/common/hadoop-3.2.3/hadoop-3.2.3.tar.gz
+ ashu@ip-172-31-1-160:~$ ls
+hadoop-3.2.3.tar.gz
+ashu@ip-172-31-1-160:~$ tar xvzf hadoop-3.2.3.tar.gz 
+hadoop-3.2.3/
+hadoop-3.2.3/NOTICE.txt
+hadoop-3.2.3/sbin/
+hadoop-3.2.3/sbin/start-yarn.cmd
+hadoop-3.2.3/sbin
+```
+
+### setting up hadoop home env 
+
+```
+ashu@ip-172-31-1-160:~$ ls
+hadoop-3.2.3  hadoop-3.2.3.tar.gz
+ashu@ip-172-31-1-160:~$ 
+ashu@ip-172-31-1-160:~$ cd hadoop-3.2.3/
+ashu@ip-172-31-1-160:~/hadoop-3.2.3$ ls
+LICENSE.txt  NOTICE.txt  README.txt  bin  etc  include  lib  libexec  sbin  share
+ashu@ip-172-31-1-160:~/hadoop-3.2.3$ pwd
+/home/ashu/hadoop-3.2.3
+ashu@ip-172-31-1-160:~/hadoop-3.2.3$ cd
+ashu@ip-172-31-1-160:~$ 
+ashu@ip-172-31-1-160:~$ vim  ~/.bashrc 
+ashu@ip-172-31-1-160:~$ tail -7  ~/.bashrc 
+fi
+
+JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+HADOOP_HOME=/home/ashu/hadoop-3.2.3
+PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+export PATH
+
+ashu@ip-172-31-1-160:~
+```
+
+### verify hdfs command 
+
+```
+ashu@ip-172-31-1-160:~$ source ~/.bashrc 
+ashu@ip-172-31-1-160:~$ 
+ashu@ip-172-31-1-160:~$ hdfs 
+Usage: hdfs [OPTIONS] SUBCOMMAND [SUBCOMMAND OPTIONS]
+
+  OPTIONS is none or any of:
+
+--buildpaths                       attempt to add class files from build tree
+--config dir                       Hadoop config directory
+--daemon (start|status|stop)       operate on a daemon
+--debug                
+```
+
+
+
+
 

@@ -232,6 +232,11 @@ ashu@ip-172-31-1-160:~$
 
 ```
 
+### HDFS Block size and replication factor 
+
+<img src="hdfsrf.png">
+
+
 
 
 

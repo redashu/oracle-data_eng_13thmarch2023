@@ -1,1 +1,4 @@
-# oracle-data_eng_13thmarch2023
+## Training Plan 
+
+<img src="plan.png">
+

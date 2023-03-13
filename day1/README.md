@@ -271,6 +271,14 @@ hdfs dfs -D dfs.blocksize=64M -D dfs.replication=2 -copyFromLocal NewData64.csv 
 
 <img src="nn.png">
 
+### Introduction to MR (map Reduce) distributed parallel processing framework on top of HDFS 
+
+<img src="mr.png">
+
+### Mapreduce v2 --- YARN 
+
+<img src="yarn.png">
+
 
 
 

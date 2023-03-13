@@ -194,6 +194,44 @@ ashu@ip-172-31-1-160:~/hadoop-3.2.3/etc/hadoop$ vim hadoop-env.sh  +54
 ashu@ip-172-31-1-160:~/hadoop-3.2.3/etc/hadoop$ 
 ```
 
+### hadoop super user can do all / file-system access
+
+```
+ashu@ip-172-31-1-160:~$ hdfs  dfs  -ls  /
+Found 2 items
+drwxr-xr-x   - ubuntu supergroup          0 2023-03-13 07:25 /data-only
+drwxr-xr-x   - ubuntu supergroup          0 2023-03-10 06:24 /test
+ashu@ip-172-31-1-160:~$ ls /home
+akanksha  amritendu  ashu  giridhar  krishna  siva  srihari  ubuntu  uday
+ashu@ip-172-31-1-160:~$ hdfs  dfs  -ls  /data-only 
+Found 4 items
+drwxr-xr-x   - akanksha  supergroup          0 2023-03-13 07:27 /data-only/akanksha
+drwxr-xr-x   - amritendu supergroup          0 2023-03-13 07:27 /data-only/amritendu
+drwxr-xr-x   - ashu      supergroup          0 2023-03-13 07:27 /data-only/ashu
+drwxr-xr-x   - giridhar  supergroup          0 2023-03-13 07:27 /data-only/giridhar
+ashu@ip-172-31-1-160:~$ hdfs  dfs  -ls  /data-only 
+Found 9 items
+drwxr-xr-x   - akanksha  supergroup          0 2023-03-13 07:27 /data-only/akanksha
+drwxr-xr-x   - amritendu supergroup          0 2023-03-13 07:27 /data-only/amritendu
+drwxr-xr-x   - ashu      supergroup          0 2023-03-13 07:27 /data-only/ashu
+drwxr-xr-x   - giridhar  supergroup          0 2023-03-13 07:27 /data-only/giridhar
+drwxr-xr-x   - krishna   supergroup          0 2023-03-13 07:27 /data-only/krishna
+drwxr-xr-x   - siva      supergroup          0 2023-03-13 07:27 /data-only/siva
+drwxr-xr-x   - srihari   supergroup          0 2023-03-13 07:27 /data-only/srihari
+drwxr-xr-x   - ubuntu    supergroup          0 2023-03-13 07:28 /data-only/ubuntu
+drwxr-xr-x   - uday      supergroup          0 2023-03-13 07:28 /data-only/uday
+ashu@ip-172-31-1-160:~$ 
+ashu@ip-172-31-1-160:~$ 
+ashu@ip-172-31-1-160:~$ whoami
+ashu
+ashu@ip-172-31-1-160:~$ hdfs  dfs -mkdir  /data-only/ashu/textdata
+ashu@ip-172-31-1-160:~$ 
+ashu@ip-172-31-1-160:~$ hdfs  dfs -mkdir  /data-only/siva/textdata
+mkdir: Permission denied: user=ashu, access=WRITE, inode="/data-only/siva":siva:supergroup:drwxr-xr-x
+ashu@ip-172-31-1-160:~$ 
+
+```
+
 
 
 

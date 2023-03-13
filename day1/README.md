@@ -267,6 +267,10 @@ ashu@ip-172-31-1-160:~$
 hdfs dfs -D dfs.blocksize=64M -D dfs.replication=2 -copyFromLocal NewData64.csv /data-only/amritendu/
 ```
 
+### Namenode metadata info 
+
+<img src="nn.png">
+
 
 
 

@@ -236,6 +236,37 @@ ashu@ip-172-31-1-160:~$
 
 <img src="hdfsrf.png">
 
+### Uploading data from HDFS client machine 
+
+```
+ashu@ip-172-31-1-160:~$ hdfs  dfs  -ls   /data-only/ashu
+
+Found 2 items
+drwxr-xr-x   - ashu supergroup          0 2023-03-13 09:05 /data-only/ashu/csvdata
+drwxr-xr-x   - ashu supergroup          0 2023-03-13 07:29 /data-only/ashu/textdata
+ashu@ip-172-31-1-160:~$ 
+ashu@ip-172-31-1-160:~$ ls
+ CSV-data-load_data_metadata.zip                  ashudata.csv   hadoop-3.2.3.tar.gz
+'Metadata for Data7602DescendingYearOrder.xlsx'   hadoop-3.2.3   newdata.csv
+ashu@ip-172-31-1-160:~$ hdfs  dfs  -copyFromLocal   newdata.csv   /data-only/ashu/csvdata/ 
+ashu@ip-172-31-1-160:~$ hdfs  dfs  -ls   /data-only/ashu
+Found 2 items
+drwxr-xr-x   - ashu supergroup          0 2023-03-13 09:19 /data-only/ashu/csvdata
+drwxr-xr-x   - ashu supergroup          0 2023-03-13 07:29 /data-only/ashu/textdata
+ashu@ip-172-31-1-160:~$ hdfs  dfs  -ls   /data-only/ashu/csvdata
+Found 1 items
+-rw-r--r--   3 ashu supergroup  271221040 2023-03-13 09:19 /data-only/ashu/csvdata/newdata.csv
+ashu@ip-172-31-1-160:~$ 
+
+
+```
+
+### changing block and replication factor while copy 
+
+```
+hdfs dfs -D dfs.blocksize=64M -D dfs.replication=2 -copyFromLocal NewData64.csv /data-only/amritendu/
+```
+
 
 
 

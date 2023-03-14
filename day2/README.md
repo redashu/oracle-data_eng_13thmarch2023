@@ -324,9 +324,68 @@ Found 2 items
 -rw-r--r--   3 ashu supergroup  271221040 2023-03-13 10:28 /data-only/ashu/csvdata/newdata.csv
 ```
 
+## YARN / MAPREduce -- they need java program to process data 
 
+### java program  -->(mvn)----> jar / war 
 
+### workflow 
 
+<img src="workflow.png">
+
+### checking sample jar files by hadoop framework itself 
+
+```
+ashu@ip-172-31-1-160:~$ 
+ashu@ip-172-31-1-160:~$ 
+ashu@ip-172-31-1-160:~$ cd hadoop-3.2.3/
+ashu@ip-172-31-1-160:~/hadoop-3.2.3$ ls
+LICENSE.txt  NOTICE.txt  README.txt  bin  etc  include  lib  libexec  sbin  share
+ashu@ip-172-31-1-160:~/hadoop-3.2.3$ cd share/
+ashu@ip-172-31-1-160:~/hadoop-3.2.3/share$ ls
+doc  hadoop
+ashu@ip-172-31-1-160:~/hadoop-3.2.3/share$ cd hadoop/
+ashu@ip-172-31-1-160:~/hadoop-3.2.3/share/hadoop$ ls
+client  common  hdfs  mapreduce  tools  yarn
+ashu@ip-172-31-1-160:~/hadoop-3.2.3/share/hadoop$ cd mapreduce/
+ashu@ip-172-31-1-160:~/hadoop-3.2.3/share/hadoop/mapreduce$ ls
+hadoop-mapreduce-client-app-3.2.3.jar              hadoop-mapreduce-client-shuffle-3.2.3.jar
+hadoop-mapreduce-client-common-3.2.3.jar           hadoop-mapreduce-client-uploader-3.2.3.jar
+hadoop-mapreduce-client-core-3.2.3.jar             hadoop-mapreduce-examples-3.2.3.jar
+hadoop-mapreduce-client-hs-3.2.3.jar               jdiff
+hadoop-mapreduce-client-hs-plugins-3.2.3.jar       lib
+hadoop-mapreduce-client-jobclient-3.2.3-tests.jar  lib-examples
+hadoop-mapreduce-client-jobclient-3.2.3.jar        sources
+hadoop-mapreduce-client-nativetask-3.2.3.jar
+```
+
+### checking sample options in jar file 
+
+```
+ashu@ip-172-31-1-160:~/hadoop-3.2.3/share/hadoop/mapreduce$ hadoop  jar  hadoop-mapreduce-examples-3.2.3.jar  
+An example program must be given as the first argument.
+Valid program names are:
+  aggregatewordcount: An Aggregate based map/reduce program that counts the words in the input files.
+  aggregatewordhist: An Aggregate based map/reduce program that computes the histogram of the words in the input files.
+  bbp: A map/reduce program that uses Bailey-Borwein-Plouffe to compute exact digits of Pi.
+  dbcount: An example job that count the pageview counts from a database.
+  distbbp: A map/reduce program that uses a BBP-type formula to compute exact bits of Pi.
+  grep: A map/reduce program that counts the matches of a regex in the input.
+  join: A job that effects a join over sorted, equally partitioned datasets
+  multifilewc: A job that counts words from several files.
+  pentomino: A map/reduce tile laying program to find solutions to pentomino problems.
+  pi: A map/reduce program that estimates Pi using a quasi-Monte Carlo method.
+  randomtextwriter: A map/reduce program that writes 10GB of random textual data per node.
+  randomwriter: A map/reduce program that writes 10GB of random data per node.
+  secondarysort: An example defining a secondary sort to the reduce.
+  sort: A map/reduce program that sorts the data written by the random writer.
+  sudoku: A sudoku solve
+```
+
+### Running wordcount operation --
+
+```
+
+```
 
 
 

@@ -181,11 +181,76 @@ VERSION  fsimage_0000000000000000000  fsimage_0000000000000000000.md5  seen_txid
 ubuntu@ip-172-31-37-1:~/oracle/nn_metadata/current$ 
 
 ```
-### starting namenode endpoint 
+
+## new strategy setup 
+
+<img src="setup1.png">
+
+### Namenode + Resource manager  -- machine only 
+
+### mapred-site.xml
 
 ```
+<configuration>
+   <property>
+    <name>mapreduce.jobtracker.address</name>
+    <value>15.206.91.13:54311</value>
+  </property>
+  <property>
+    <name>mapreduce.framework.name</name>
+    <value>yarn</value>
+  </property>
+</configuration>
+```
+
+### yarn-site.xml 
 
 ```
+	   <property>
+    <name>yarn.nodemanager.aux-services</name>
+    <value>mapreduce_shuffle</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.hostname</name>
+    <value>ec2-15-206-91-13.ap-south-1.compute.amazonaws.com</value>
+  </property>
+```
+
+
+### COpy all given files to datanodes machine you want to configure 
+
+```
+ubuntu@ip-172-31-37-1:~/hadoop-3.2.4/etc/hadoop$ vim yarn-site.xml 
+ubuntu@ip-172-31-37-1:~/hadoop-3.2.4/etc/hadoop$ 
+ubuntu@ip-172-31-37-1:~/hadoop-3.2.4/etc/hadoop$ cat workers 
+172.31.37.40
+172.31.33.251
+ubuntu@ip-172-31-37-1:~/hadoop-3.2.4/etc/hadoop$ scp  hadoop-env.sh  core-site.xml  mapred-site.xml  yarn-site.xml     172.31.37.40:/home/ubuntu/hadoop-3.2.4/etc/hadoop/ 
+hadoop-env.sh                                                                      100%   16KB  14.9MB/s   00:00    
+core-site.xml                                                                      100%  954     1.2MB/s   00:00    
+mapred-site.xml                                                                    100%  962     1.3MB/s   00:00    
+yarn-site.xml                                                                      100%  946     1.4MB/s   00:00    
+ubuntu@ip-172-31-37-1:~/hadoop-3.2.4/etc/hadoop$ scp  hadoop-env.sh  core-site.xml  mapred-site.xml  yarn-site.xml     172.31.33.251:/home/ubuntu/hadoop-3.2.4/etc/hadoop/ 
+hadoop-env.sh                                                                      100%   16KB   9.2MB/s   00:00    
+core-site.xml                                                                      100%  954     1.2MB/s   00:00    
+mapred-site.xml                                                                    100%  962     1.0MB/s   00:00    
+yarn-site.xml             
+```
+
+
+### Only datanode side changes will in hdfs-site.xml 
+
+```
+	<property>
+		<name>dfs.datanode.data.dir</name>
+		<value>/home/ubuntu/mydatanode/</value>
+		<description>namenode metadata storage location </description>
+	</property>
+```
+
+### all set 
+
+
 
 
 

@@ -416,7 +416,112 @@ world	29837540
 ```
 
 
+## data of weather forcast and process it through a particular custom java code 
+
+### cloning code and dataset 
+
+```
+ashu@ip-172-31-1-160:~$ mkdir new-test
+ashu@ip-172-31-1-160:~$ cd new-test/
+ashu@ip-172-31-1-160:~/new-test$ ls
+ashu@ip-172-31-1-160:~/new-test$ ls -a
+.  ..
+ashu@ip-172-31-1-160:~/new-test$ git clone https://github.com/vasanth-mahendran/weather-data-hadoop.git
+Cloning into 'weather-data-hadoop'...
+remote: Enumerating objects: 36, done.
+remote: Counting objects: 100% (36/36), done.
+remote: Compressing objects: 100% (15/15), done.
+remote: Total 36 (delta 3), reused 36 (delta 3), pack-reused 0
+Receiving objects: 100% (36/36), 7.82 KiB | 1.56 MiB/s, done.
+Resolving deltas: 100% (3/3), done.
+ashu@ip-172-31-1-160:~/new-test$ ls
+weather-data-hadoop
+
+```
+
+### uploading data in HDFS 
+
+```
+ashu@ip-172-31-1-160:~/new-test/weather-data-hadoop$ hdfs dfs  -mkdir   /data-only/ashu/custom_data
+ashu@ip-172-31-1-160:~/new-test/weather-data-hadoop$ ls
+README.md  dataset  pom.xml  src
+ashu@ip-172-31-1-160:~/new-test/weather-data-hadoop$ hdfs dfs -put dataset/sample_weather.txt  /data-only/ashu/custom_data/
+ashu@ip-172-31-1-160:~/new-test/weather-data-hadoop$ hdfs dfs  -ls  /data-only/ashu/custom_data
+Found 1 items
+-rw-r--r--   3 ashu supergroup      12053 2023-03-14 10:53 /data-only/ashu/custom_data/sample_weather.txt
+```
 
 
+### COnverting code into jar using apache maven build 
 
+<img src="maven.png">
+
+### lets build using maven 
+
+```
+shu@ip-172-31-1-160:~/new-test/weather-data-hadoop$ ls
+README.md  dataset  pom.xml  src
+ashu@ip-172-31-1-160:~/new-test/weather-data-hadoop$ mvn install
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< com.org.vasanth:weather >-----------------------
+[INFO] Building weather 1.0
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ weather ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/ashu/new-test/weather-data-hadoop/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ weather ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to /home/ashu/new-test/weather-data-hadoop/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ weather ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/ashu/new-test/weather-data-hadoop/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ weather ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ weather ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.5:jar (default-jar) @ weather ---
+[INFO] Building jar: /home/ashu/new-test/weather-data-hadoop/target/weather-1.0.jar
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ weather ---
+[INFO] Installing /home/ashu/new-test/weather-data-hadoop/target/weather-1.0.jar to /home/ashu/.m2/repository/com/org/vasanth/weather/1.0/weather-1.0.jar
+[INFO] Installing /home/ashu/new-test/weather-data-hadoop/pom.xml to /home/ashu/.m2/repository/com/org/vasanth/weather/1.0/weather-1.0.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.063 s
+[INFO] Finished at: 2023-03-14T10:59:00Z
+[INFO] ------------------------------------------------------------------------
+ashu@ip-172-31-1-160:~/new-test/weather-data-hadoop$ ls
+README.md  dataset  pom.xml  src  target
+ashu@ip-172-31-1-160:~/new-test/weather-data-hadoop$ ls target/
+classes  generated-sources  maven-archiver  maven-status  weather-1.0.jar
+```
+
+### running custom code of java with apache YARN 
+
+```
+  660  yarn jar ./target/weather-1.0.jar  /data-only/ashu/custom_data/sample_weather.txt  /data-only/ashu/custom_data/output111 
+  661  history 
+ashu@ip-172-31-1-160:~/new-test/weather-data-hadoop$  hdfs dfs  -ls  /data-only/ashu/custom_data
+Found 2 items
+drwxr-xr-x   - ashu supergroup          0 2023-03-14 11:05 /data-only/ashu/custom_data/output111
+-rw-r--r--   3 ashu supergroup      12053 2023-03-14 10:53 /data-only/ashu/custom_data/sample_weather.txt
+ashu@ip-172-31-1-160:~/new-test/weather-data-hadoop$  hdfs dfs  -ls  /data-only/ashu/custom_data/output111
+Found 2 items
+-rw-r--r--   3 ashu supergroup          0 2023-03-14 11:05 /data-only/ashu/custom_data/output111/_SUCCESS
+-rw-r--r--   3 ashu supergroup        287 2023-03-14 11:05 /data-only/ashu/custom_data/output111/part-00000
+ashu@ip-172-31-1-160:~/new-test/weather-data-hadoop$ hdfs dfs -cat /data-only/ashu/custom_data/output111/part-00000 
+690190_02_section1	53.87166666666665 25.900000000000006 7.774999999999995
+690190_02_section2	54.76125 25.900000000000006 7.774999999999998
+690190_02_section3	53.25041666666666 25.900000000000006 7.774999999999998
+690190_02_section4	52.44708333333333 25.900000000000002 7.774999999999998
+
+```
 

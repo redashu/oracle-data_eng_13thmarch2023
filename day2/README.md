@@ -49,13 +49,62 @@ The following additional packages will be installed:
   dconf-service fontconfig fontconfig-config fonts-d
   
   =========>checking java version 
+  
+  
   ubuntu@ip-172-31-37-1:~$ java -version 
 openjdk version "1.8.0_362"
 OpenJDK Runtime Environment (build 1.8.0_362-8u362-ga-0ubuntu1~22.04-b09)
 OpenJDK 64-Bit Server VM (build 25.362-b09, mixed mode)
 ubuntu@ip-172-31-37-1:~$ 
 
+===============> setup java path 
+
+ubuntu@ip-172-31-37-1:~$ cd  /usr/lib/jvm/
+ubuntu@ip-172-31-37-1:/usr/lib/jvm$ ls
+java-1.8.0-openjdk-amd64  java-8-openjdk-amd64
+ubuntu@ip-172-31-37-1:/usr/lib/jvm$ cd java-8-openjdk-amd64/
+ubuntu@ip-172-31-37-1:/usr/lib/jvm/java-8-openjdk-amd64$ ls
+ASSEMBLY_EXCEPTION  THIRD_PARTY_README  bin  docs  include  jre  lib  man  src.zip
+ubuntu@ip-172-31-37-1:/usr/lib/jvm/java-8-openjdk-amd64$ pwd
+/usr/lib/jvm/java-8-openjdk-amd64
+ubuntu@ip-172-31-37-1:/usr/lib/jvm/java-8-openjdk-amd64$ vim  ~/.bashrc 
+ubuntu@ip-172-31-37-1:/usr/lib/jvm/java-8-openjdk-amd64$ tail -4  ~/.bashrc 
+
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+PATH=$PATH:$JAVA_HOME/bin
+export PATH
+ubuntu@ip-172-31-37-1:/usr/lib/jvm/java-8-openjdk-amd64$ source ~/.bashrc 
+ubuntu@ip-172-31-37-1:/usr/lib/jvm/java-8-openjdk-amd64$ 
+ubuntu@ip-172-31-37-1:/usr/lib/jvm/java-8-openjdk-amd64$ echo $JAVA_HOME
+/usr/lib/jvm/java-8-openjdk-amd64
+
+
 ```
+
+### Download apache hadoop tar 
+
+```
+
+ubuntu@ip-172-31-37-1:~$ wget https://downloads.apache.org/hadoop/common/hadoop-3.2.4/hadoop-3.2.4.tar.gz
+--2023-03-14 05:02:01--  https://downloads.apache.org/hadoop/common/hadoop-3.2.4/hadoop-3.2.4.tar.gz
+Resolving downloads.apache.org (downloads.apache.org)... 88.99.95.219, 135.181.214.104, 2a01:4f9:3a:2c57::2, ...
+Connecting to downloads.apache.org (downloads.apache.org)|88.99.95.219|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 492368219 (470M) [application/x-gzip]
+Saving to: ‘hadoop-3.2.4.tar.gz’
+
+hadoop-3.2.4.tar.gz            43%[====================>                             ] 203.70M 
+
+====>
+tar xvzf  hadoop-3.2.4.tar.gz
+ubuntu@ip-172-31-37-1:~$ ls
+hadoop-3.2.4  hadoop-3.2.4.tar.gz
+
+```
+
+
+
+
 
 
 

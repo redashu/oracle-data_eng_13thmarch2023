@@ -248,7 +248,52 @@ yarn-site.xml
 	</property>
 ```
 
-### all set 
+### all --- THis step we have to do only in namenode -- and only first time while setup 
+
+```
+ ubuntu@ip-172-31-37-1:~$ hdfs namenode -format 
+2023-03-14 06:34:43,764 INFO namenode.NameNode: STARTUP_MSG: 
+/************************************************************
+STARTUP_MSG: Starting NameNode
+STARTUP_MSG:   host = ip-172-31-37-1.ap-south-1.compute.internal/172.31.37.1
+STARTUP_MSG:   args = [-format]
+STARTUP_MSG:   version = 3.2.4
+STARTUP_MSG:   classpath = /h
+ 
+```
+
+### we are going to start all the services from namenode itself 
+
+```
+ubuntu@ip-172-31-37-1:~$ start-all.sh 
+WARNING: Attempting to start all Apache Hadoop daemons as ubuntu in 10 seconds.
+WARNING: This is not a recommended production deployment configuration.
+WARNING: Use CTRL-C to abort.
+Starting namenodes on [15.206.91.13]
+Starting datanodes
+Starting secondary namenodes [ip-172-31-37-1]
+Starting resourcemanager
+Starting nodemanagers
+ubuntu@ip-172-31-37-1:~$ jps
+7778 SecondaryNameNode
+8231 Jps
+7950 ResourceManager
+ubuntu@ip-172-31-37-1:~$ stop -all.sh 
+Command 'stop' not found, but there are 21 similar ones.
+ubuntu@ip-172-31-37-1:~$ stop-all.sh 
+WARNING: Stopping all Apache Hadoop daemons as ubuntu in 10 seconds.
+WARNING: Use CTRL-C to abort.
+Stopping namenodes on [15.206.91.13]
+Stopping datanodes
+Stopping secondary namenodes [ip-172-31-37-1]
+Stopping nodemanagers
+Stopping resourcemanager
+ubuntu@ip-172-31-37-1:~$ 
+
+
+```
+
+
 
 
 

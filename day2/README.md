@@ -384,8 +384,38 @@ Valid program names are:
 ### Running wordcount operation --
 
 ```
+ yarn jar hadoop-mapreduce-examples-3.2.3.jar  wordcount /data-only/ashu/csvdata/data.csv  /data-only/ashu/csvdata/ashuwcout1
+```
+
+### One more example 
 
 ```
+ 435  yes hello world this is hadoop  >/tmp/a.txt 
+  436  ls -lh /tmp/a.txt 
+  437  hdfs dfs -put /tmp/a.txt  /data-only/ashu/textdata/
+  438  hdfs dfs -ls /data-only/ashu/textdata/
+  439  yarn jar hadoop-mapreduce-examples-3.2.3.jar  wordcount /data-only/ashu/textdata/a.txt  /data-only/ashu/textdata/out1 
+  440  history 
+ashu@ip-172-31-1-160:~/hadoop-3.2.3/share/hadoop/mapreduce$ hdfs dfs -ls /data-only/ashu/textdata/
+Found 3 items
+-rw-r--r--   3 ashu supergroup  805613568 2023-03-14 09:41 /data-only/ashu/textdata/a.txt
+drwxr-xr-x   - ashu supergroup          0 2023-03-14 09:43 /data-only/ashu/textdata/out1
+-rw-r--r--   3 ashu supergroup      12053 2023-03-14 09:16 /data-only/ashu/textdata/sample_weather.txt
+ashu@ip-172-31-1-160:~/hadoop-3.2.3/share/hadoop/mapreduce$ hdfs dfs -ls /data-only/ashu/textdata/out1
+Found 2 items
+-rw-r--r--   3 ashu supergroup          0 2023-03-14 09:43 /data-only/ashu/textdata/out1/_SUCCESS
+-rw-r--r--   3 ashu supergroup         78 2023-03-14 09:43 /data-only/ashu/textdata/out1/part-r-00000
+ashu@ip-172-31-1-160:~/hadoop-3.2.3/share/hadoop/mapreduce$ hdfs dfs -cat /data-only/ashu/textdata/out1/part-r-00000
+hadoop	29837539
+hello	29837540
+is	29837539
+thi	1
+this	29837539
+world	29837540
+
+```
+
+
 
 
 

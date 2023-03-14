@@ -525,3 +525,33 @@ ashu@ip-172-31-1-160:~/new-test/weather-data-hadoop$ hdfs dfs -cat /data-only/as
 
 ```
 
+## sudoku solver 
+
+```
+ashu@ip-172-31-1-160:~/hadoop-3.2.3/share/hadoop/mapreduce$ yarn jar hadoop-mapreduce-examples-3.2.3.jar  sudoku ~/puzzle.dta  
+Solving /home/ashu/puzzle.dta
+8 5 1 3 9 2 6 4 7 
+4 3 2 6 7 8 1 9 5 
+7 9 6 5 1 4 3 8 2 
+6 1 4 8 2 3 7 5 9 
+5 7 8 9 6 1 4 2 3 
+3 2 9 4 5 7 8 1 6 
+9 4 7 2 8 6 5 3 1 
+1 8 5 7 3 9 2 6 4 
+2 6 3 1 4 5 9 7 8 
+
+Found 1 solutions
+ashu@ip-172-31-1-160:~/hadoop-3.2.3/share/hadoop/mapreduce$ cat  ~/puzzle.dta 
+8 5 ? 3 9 ? ? ? ?
+? ? 2 ? ? ? ? ? ?
+? ? 6 ? 1 ? ? ? 2
+? ? 4 ? ? 3 ? 5 9
+? ? 8 9 ? 1 4 ? ?
+3 2 ? 4 ? ? 8 ? ?
+9 ? ? ? 8 ? 5 ? ?
+? ? ? ? ? ? 2 ? ?
+? ? ? ? 4 5 ? 7 8
+
+```
+
+

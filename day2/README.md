@@ -102,7 +102,90 @@ hadoop-3.2.4  hadoop-3.2.4.tar.gz
 
 ```
 
+## NameNode setup  --- 
 
+### hadoop-env.sh to setup java_Home path 
+```
+ubuntu@ip-172-31-37-1:~$ whoami
+ubuntu
+ubuntu@ip-172-31-37-1:~$ pwd
+/home/ubuntu
+ubuntu@ip-172-31-37-1:~$ ls
+hadoop-3.2.4
+ubuntu@ip-172-31-37-1:~$ cd hadoop-3.2.4/
+ubuntu@ip-172-31-37-1:~/hadoop-3.2.4$ ls
+LICENSE.txt  NOTICE.txt  README.txt  bin  etc  include  lib  libexec  sbin  share
+ubuntu@ip-172-31-37-1:~/hadoop-3.2.4$ cd etc/
+ubuntu@ip-172-31-37-1:~/hadoop-3.2.4/etc$ ls
+hadoop
+ubuntu@ip-172-31-37-1:~/hadoop-3.2.4/etc$ cd hadoop/
+ubuntu@ip-172-31-37-1:~/hadoop-3.2.4/etc/hadoop$ ls
+capacity-scheduler.xml      hadoop-user-functions.sh.example  kms-log4j.properties        ssl-client.xml.example
+configuration.xsl           hdfs-site.xml                     kms-site.xml                ssl-server.xml.example
+container-executor.cfg      httpfs-env.sh                     log4j.properties            user_ec_policies.xml.template
+core-site.xml               httpfs-log4j.properties           mapred-env.cmd              workers
+hadoop-env.cmd              httpfs-signature.secret           mapred-env.sh               yarn-env.cmd
+hadoop-env.sh               httpfs-site.xml                   mapred-queues.xml.template  yarn-env.sh
+hadoop-metrics2.properties  kms-acls.xml                      mapred-site.xml             yarn-site.xml
+hadoop-policy.xml           kms-env.sh                        shellprofile.d              yarnservice-log4j.properties
+ubuntu@ip-172-31-37-1:~/hadoop-3.2.4/etc/hadoop$ echo $JAVA_HOME
+/usr/lib/jvm/java-8-openjdk-amd64
+ubuntu@ip-172-31-37-1:~/hadoop-3.2.4/etc/hadoop$ vim hadoop-env.sh 
+ubuntu@ip-172-31-37-1:~/hadoop-3.2.4/etc/hadoop$ 
+
+
+```
+
+### core-site.xml 
+
+```
+<configuration>
+	<property>
+		<name>fs.defaultFS</name>
+		<value>hdfs://15.206.91.13:9000</value>
+		<description>namenode endpoint URL ,will be shared to DN and clients</description>
+	</property>
+
+</configuration>
+```
+
+### namenode hdfs-site.xml 
+
+```
+<configuration>
+	<property>
+		<name>dfs.namenode.name.dir</name>
+		<value>/home/ubuntu/oracle/nn_metadata</value>
+		<description>namenode metadata storage location </description>
+	</property>
+
+</configuration>
+```
+
+### to format above location in hdfs-site.xml we have to format namenode only first time while creating it 
+
+```
+   72  hdfs  namenode -format 
+   73  history 
+ubuntu@ip-172-31-37-1:~$ ls
+hadoop-3.2.4  oracle
+ubuntu@ip-172-31-37-1:~$ cd oracle/
+ubuntu@ip-172-31-37-1:~/oracle$ ls
+nn_metadata
+ubuntu@ip-172-31-37-1:~/oracle$ cd nn_metadata/
+ubuntu@ip-172-31-37-1:~/oracle/nn_metadata$ ls
+current
+ubuntu@ip-172-31-37-1:~/oracle/nn_metadata$ cd current/
+ubuntu@ip-172-31-37-1:~/oracle/nn_metadata/current$ ls
+VERSION  fsimage_0000000000000000000  fsimage_0000000000000000000.md5  seen_txid
+ubuntu@ip-172-31-37-1:~/oracle/nn_metadata/current$ 
+
+```
+### starting namenode endpoint 
+
+```
+
+```
 
 
 

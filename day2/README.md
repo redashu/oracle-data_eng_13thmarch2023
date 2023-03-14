@@ -293,6 +293,36 @@ ubuntu@ip-172-31-37-1:~$
 
 ```
 
+### wordcount logic with map reduce 
+
+<img src="mr.png">
+
+### creating and upload sample data in HDFS so that we can process it via YARN / mapreduce
+
+```
+328  yes  "hello,world,bigdata,java,python"  >data.csv 
+  329  ls -lh data.csv 
+  330  yes  "hello,world,bigdata,java,python"  >data.csv 
+  331  ls -lh data.csv 
+  332  cat -n data.csv 
+  333  history 
+ashu@ip-172-31-1-160:~$ yes  "hi,ok,hadoop,scala"  >>data.csv 
+^C
+ashu@ip-172-31-1-160:~$ ls -lh  data.csv 
+-rw-rw-r-- 1 ashu ashu 1.6G Mar 14 07:25 data.csv
+ashu@ip-172-31-1-160:~$ 
+ashu@ip-172-31-1-160:~$ 
+ashu@ip-172-31-1-160:~$ hdfs dfs -ls /data-only/ashu
+Found 2 items
+drwxr-xr-x   - ashu supergroup          0 2023-03-13 10:28 /data-only/ashu/csvdata
+drwxr-xr-x   - ashu supergroup          0 2023-03-13 13:59 /data-only/ashu/textdata
+ashu@ip-172-31-1-160:~$ hdfs  dfs -put data.csv   /data-only/ashu/csvdata/
+ashu@ip-172-31-1-160:~$ 
+ashu@ip-172-31-1-160:~$ hdfs dfs -ls /data-only/ashu/csvdata
+Found 2 items
+-rw-r--r--   3 ashu supergroup 1638846464 2023-03-14 07:26 /data-only/ashu/csvdata/data.csv
+-rw-r--r--   3 ashu supergroup  271221040 2023-03-13 10:28 /data-only/ashu/csvdata/newdata.csv
+```
 
 
 

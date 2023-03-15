@@ -315,6 +315,75 @@ this time data is in local system
 >>> exit()
 ```
 
+### writing code in file --
+
+### Installing pyspark module in python 
+
+```
+ubuntu@ip-172-31-1-160:~/ashu-project$ pip3  install pyspark 
+Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: pyspark in /home/ubuntu/.local/lib/python3.10/site-packages (3.3.2)
+Requirement already satisfied: py4j==0.10.9.5 in /home/ubuntu/.local/lib/python3.10/site-packages (from pyspark) (0.10.9.5)
+ubuntu@ip-172-31-1-160:~/ashu-project$ 
+
+```
+
+### verify by importing it 
+
+```
+ubuntu@ip-172-31-1-160:~/ashu-project$ python3
+Python 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 
+>>> import pyspark 
+>>> dir(pyspark)
+['Accumulator', 'AccumulatorParam', 'Any', 'BarrierTaskContext', 'BarrierTaskInfo', 'BasicProfiler', 'Broadcast', 'CPickleSerializer', 'Callable', 'F', 'HiveContext', 'InheritableThread', 'MarshalSerializer', 'Optional', 'Profiler', 'RDD', 'RDDBarrier', 'Row', 'SQLContext', 'SparkConf', 'SparkContext', 'SparkFiles', 'SparkJobInfo', 'SparkStageInfo', 'StatusTracker', 'StorageLevel', 'T', 'TaskContext', 'TypeVar', 'Union', '_NoValue', '__all__', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__path__', '__spec__', '__version__', '_globals', 'accumulators', 'broadcast', 'cast', 'cloudpickle', 'conf', 'context', 'copy_func', 'files', 'find_spark_home', 'inheritable_thread_target', 'java_gateway', 'join', 'keyword_only', 'profiler', 'rdd', 'rddsampler', 'resource', 'resultiterable', 'serializers', 'shuffle', 'since', 'sql', 'statcounter', 'status', 'storagelevel', 'taskcontext', 'traceback_utils', 'types', 'util', 'version', 'wraps']
+>>> 
+```
+
+
+### code in file -- myfirstjob.py 
+
+```
+import time 
+from pyspark import SparkContext
+# loading module to connect spark system 
+sc=SparkContext("local","ashu_app1")
+# we get spark context then we will use it like before 
+ashu_file=sc.textFile("file:///home/ubuntu/ashu-project/ashu_data.txt")
+# printing first line 
+print(ashu_file.first())
+# top 3 lines printing 
+for i in ashu_file.take(3):
+    print(i)
+    time.sleep(2)
+# printing all the lines 
+al=ashu_file.collect()
+print(al)
+# total number of lines as well
+print("total number of lines ",ashu_file.count())
+```
+
+### run it 
+
+```
+ubuntu@ip-172-31-1-160:~/ashu-project$ python3  myfirstjob.py 
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+23/03/15 11:18:31 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+hello world this is me ashutoshh                                                
+hello world this is me ashutoshh
+we are going to use pyspark to load data
+this time data is in local system 
+['hello world this is me ashutoshh', 'we are going to use pyspark to load data', 'this time data is in local system ', 'welcome to oracle data engineering training ', "hello i don't know what to right now "]
+total number of lines  5
+```
+
+### another method 
+
+```
+spark-submit  myfirstjob.py 
+```
 
 
 

@@ -248,6 +248,15 @@ ubuntu@ip-172-31-1-160:~/spark-332$
 
 ```
 
+### spark setup 
+
+<img src="sparks.png">
+
+### python to spark connection options 
+
+<img src="pyspark1.png">
+
+
 
 
 

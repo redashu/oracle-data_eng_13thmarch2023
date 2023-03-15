@@ -1,1 +1,4 @@
-### getting started
+### plan of the day 
+
+<img src="plan.png">
+

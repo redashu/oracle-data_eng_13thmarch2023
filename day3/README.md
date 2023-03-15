@@ -291,6 +291,32 @@ SparkSession available as 'spark'.
 
 ```
 
+### more functions 
+
+```
+>>> f1=sc.textFile("file:///home/ubuntu/ashu-project/ashu_data.txt")
+>>> f1.first()
+'hello world this is me ashutoshh'                                              
+>>> f1.take(3)
+['hello world this is me ashutoshh', 'we are going to use pyspark to load data', 'this time data is in local system ']
+>>> import  time
+>>> for  i in  f1.take(3):
+...     print(i)
+...     time.sleep(2)
+... 
+hello world this is me ashutoshh
+we are going to use pyspark to load data
+this time data is in local system 
+
+===
+>>> f1.collect()
+['hello world this is me ashutoshh', 'we are going to use pyspark to load data', 'this time data is in local system ', 'welcome to oracle data engineering training ', "hello i don't know what to right now "]
+>>> 
+>>> exit()
+```
+
+
+
 
 
 

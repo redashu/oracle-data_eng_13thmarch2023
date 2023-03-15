@@ -256,6 +256,37 @@ ubuntu@ip-172-31-1-160:~/spark-332$
 
 <img src="pyspark1.png">
 
+## PYspark to read and process data 
+
+### data sources for spark 
+
+<img src="s1.png">
+
+### using pyspark to load text file 
+
+```
+ubuntu@ip-172-31-1-160:~/ashu-project$ pyspark
+Python 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+23/03/15 09:55:41 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /__ / .__/\_,_/_/ /_/\_\   version 3.3.2
+      /_/
+
+Using Python version 3.10.6 (main, Nov 14 2022 16:10:14)
+Spark context Web UI available at http://ip-172-31-1-160.ap-south-1.compute.internal:4040
+Spark context available as 'sc' (master = spark://172.31.1.160:7077, app id = app-20230315095543-0001).
+SparkSession available as 'spark'.
+>>> ashu_file=sc.textFile("file:///home/ubuntu/ashu-project/ashu_data.txt")
+>>> 
+
+```
+
 
 
 

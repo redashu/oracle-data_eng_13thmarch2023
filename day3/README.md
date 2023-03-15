@@ -270,7 +270,9 @@ Python 3.10.6 (main, Nov 14 2022, 16:10:14) [GCC 11.3.0] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 Setting default log level to "WARN".
 To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
-23/03/15 09:55:41 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+23/03/15 10:50:29 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+23/03/15 10:50:30 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+23/03/15 10:50:30 WARN Utils: Service 'SparkUI' could not bind on port 4041. Attempting port 4042.
 Welcome to
       ____              __
      / __/__  ___ _____/ /__
@@ -279,10 +281,12 @@ Welcome to
       /_/
 
 Using Python version 3.10.6 (main, Nov 14 2022 16:10:14)
-Spark context Web UI available at http://ip-172-31-1-160.ap-south-1.compute.internal:4040
-Spark context available as 'sc' (master = spark://172.31.1.160:7077, app id = app-20230315095543-0001).
+Spark context Web UI available at http://ip-172-31-1-160.ap-south-1.compute.internal:4042
+Spark context available as 'sc' (master = local[*], app id = local-1678877430525).
 SparkSession available as 'spark'.
->>> ashu_file=sc.textFile("file:///home/ubuntu/ashu-project/ashu_data.txt")
+>>> f1=sc.textFile("file:///home/ubuntu/ashu-project/ashu_data.txt")
+>>> f1.first()
+'hello world this is me ashutoshh'                                              
 >>> 
 
 ```

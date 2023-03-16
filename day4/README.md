@@ -33,5 +33,13 @@
 
 <img src="dd4.png">
 
+### working in rdd
+
+<img src="work.png">
+
+### Overl RDD in apache spark 
+
+<img src="rdd_done.png">
+
 
 

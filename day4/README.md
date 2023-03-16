@@ -119,6 +119,51 @@ scala>
 
 ```
 
+###  python based spark functions --pyspark 
+
+```
+from pyspark import SparkContext 
+# imported Sparkcontext module 
+sc=SparkContext("local","ashu-search-count-app")
+# transformation is going on 
+# created a context which will responsible to creating RDD
+firstRDD=sc.textFile("hdfs://172.31.7.199:9000/kool/ashudata.txt").cache() 
+# making cache of firstRDD
+# creating search function logic in python 
+search_ashu=firstRDD.filter(lambda mydata: "ashutoshh" in mydata)
+search_spark=firstRDD.filter(lambda mydata1: "spark" in mydata1)
+
+# action 
+# counting search data 
+final1=search_ashu.count()
+final2=search_spark.count()
+# printing info 
+print("ashutoshh count is ",final1)
+print("spark count is ",final2)
+
+```
+
+### we can run it using two methods
+
+## ..
+```
+ubuntu@ip-172-31-1-160:~/ashu-project$ python3  search_string.py 
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+23/03/16 09:27:16 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+23/03/16 09:27:17 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+ashutoshh count is  240920                                                      
+spark count is  722758
+ubuntu@ip-172-31-1-160:~/ashu-project$ 
+```
+
+### submit 
+
+```
+spark-submit  search_string.py 
+```
+
+
 
 
 

@@ -25,3 +25,13 @@
 
 <img src="rdd2.png">
 
+### RDD operations 
+
+<img src="rdd3.png">
+
+### overall RDD process
+
+<img src="dd4.png">
+
+
+

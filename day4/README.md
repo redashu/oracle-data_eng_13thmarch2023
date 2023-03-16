@@ -163,6 +163,32 @@ ubuntu@ip-172-31-1-160:~/ashu-project$
 spark-submit  search_string.py 
 ```
 
+### wordcount using pyspark 
+
+```
+from pyspark import SparkContext 
+# imported Sparkcontext module 
+sc=SparkContext("local","ashu-word-count-app")
+# transformation is going on 
+# created a context which will responsible to creating RDD
+myTextfile=sc.textFile("hdfs://172.31.7.199:9000/kool/ashudata.txt")
+# use flatmap for spliting purpose -- create 0 or more RDD
+split_data=myTextfile.flatMap(lambda sp: sp.split(" "))
+# perform mapping operation (word,1) (word2,1)
+map_rdd=split_data.map(lambda word: (word,1))
+# call action function -- reducebyKey
+counts=map_rdd.reduceByKey(lambda x,y:x+y)
+# collecting 
+print(counts.collect())
+
+```
+
+### starting multiple threads from spark driver to master 
+
+```
+spark-submit  --master  local[3]  counting_words.py 
+```
+
 
 
 

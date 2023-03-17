@@ -102,5 +102,29 @@ stream_sc.awaitTermination() # wait for the computation
 
 ```
 
+## SQL in Bigdata 
+
+<img src="sqlb.png">
+
+### Spark sql 
+
+<img src="sqlb1.png">
+
+### Hive vs spark SQL 
+
+<img src="sphive.png">
+
+### getting more info about spark sql data sources 
+
+<img src="sql1.png">
+
+### spark sql more info 
+
+<img src="sql2.png">
+
+
+
+
+
 
 

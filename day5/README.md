@@ -24,9 +24,9 @@
 from pyspark import SparkContext
 from pyspark.streaming import StreamingContext
 # creating spark context 
-sc=SparkContext("local","ashu-network-data-wc")
+sc=SparkContext("local[2]","ashu-network-data-wc")
 # creating socket stream to recv data in batch interval of 2 seconds 
-stream_sc=StreamingContext(sc,50) 
+stream_sc=StreamingContext(sc,10) 
 # use stream socket to connect target -- (hostname:port) --/localhost port
 my_dataline=stream_sc.socketTextStream("localhost",9876)
 # above my_dataline -- is a Dstream -- sequence of rdd 
@@ -42,7 +42,33 @@ ashu_wc.pprint()
 stream_sc.start() # start compute socket 
 stream_sc.awaitTermination() # wait for the computation 
 
+
 ```
 
+### to test open two terminal 
 
+### terminal 1 create socket tcp 
+
+```
+ubuntu@ip-172-31-1-160:~/ashu-project$ nc -lk 9876 
+hey hello hey hii ashu hello
+
+
+
+```
+
+### terminal 2 
+
+```
+ubuntu@ip-172-31-1-160:~/ashu-project$ spark-submit  spark_live_wordcount.py     localhost 9876 
+
+=====
+Time: 2023-03-17 07:12:30
+-------------------------------------------
+('hii', 1)
+('hey', 2)
+('hello', 2)
+('ashu', 1)
+
+```
 

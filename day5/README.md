@@ -124,7 +124,44 @@ stream_sc.awaitTermination() # wait for the computation
 
 ### getting started with spark sql 
 
+### Spark sql code in python 
 
+```
+#from pyspark import SparkContext
+#from pyspark.streaming import StreamingContext
+from pyspark.sql import SparkSession
+import time 
+# creating session using spar sql layer 
+spark_sql1=SparkSession.builder.appName("ashu_spark_sql-example").config("some_spark_config_option","some-value").getOrCreate()
+# we can load various data set of diff types like csv,json,text,xml etc
+ashu_df=spark_sql1.read.json("dataset/emp.json")
+# above ashu_df is a data frame and now that df is having sql like capabilities 
+# to print 
+#print(ashu_df.show())
+# print schema of data frame 
+print(ashu_df.printSchema())
+# selecting particular column 
+name_only=ashu_df.select("name").show()
+x1=ashu_df.select(ashu_df["name"],ashu_df['email']).show()
+print(x1)
+time.sleep(3)
+# filter ops
+y1=ashu_df.filter(ashu_df['age'] > 27).show()
+print(y1)
+# count people by their age 
+z1=ashu_df.groupby("age").count().show()
+time.sleep(2)
+print(z1)
+# actually write SQL like query not in df condition 
+# we can create temperary SQL image of df 
+time.sleep(5)
+ashu_df.createOrReplaceTempView("oracle")
+# using sql spark session we can run queiry like sql 
+final_output=spark_sql1.sql("select * from oracle")
+print(final_output.show())
+```
+
+### to run we can use python / spark-submit both 
 
 
 

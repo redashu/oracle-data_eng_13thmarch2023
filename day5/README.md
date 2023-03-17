@@ -2,7 +2,7 @@
 
 ### rev 1 
 
-<img src="rev1.png">
+<img src="rev.png">
 
 ### Revision 2 
 

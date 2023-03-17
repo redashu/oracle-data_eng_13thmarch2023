@@ -122,7 +122,7 @@ stream_sc.awaitTermination() # wait for the computation
 
 <img src="sql2.png">
 
-
+### getting started with spark sql 
 
 
 
